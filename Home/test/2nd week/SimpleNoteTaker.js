@@ -1,5 +1,7 @@
 require("chromedriver"); 
-const assert = require('node:assert')
+//const assert = require('node:assert')
+//import { assert } from 'chai';
+const { assert } = require('chai');
 //import the following classes from Selenium
 const {Builder, By, Key, until} = require('selenium-webdriver');
 
@@ -155,6 +157,7 @@ async function  runTests() {
         await emptyTitleTest(driver);
         
         await emptyNoteTest(driver,'Hello');
+        
         
         let notes =[['test1','test1'],['test2','test2'],['test3','test3']];
         for(let i=0;i<notes.length;i++){
