@@ -8,9 +8,9 @@ const { assert } = require('chai');
 async function checkRadioValue(driver,type,age) {
         try{
         //await driver.findElement({value: type}).click()
-        await driver.findElement(By.xpath("//div[@id='radio-group-sex']/input[@value='"+type+"']")).click()
+        await driver.findElement(By.xpath("//div[@id='radio-group-gender']/input[@value='"+type+"']")).click()
         
-        let txt = await driver.findElement({id:'group-sex-output'}).getText()
+        let txt = await driver.findElement({id:'group-gender-output'}).getText()
         assert.equal(txt,type)
         //await driver.findElement({value: age }).click()
         await driver.findElement(By.xpath("//div[@id='radio-group-age']/input[@value='"+age+"']")).click()
