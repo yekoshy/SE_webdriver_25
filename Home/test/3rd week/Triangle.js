@@ -1,9 +1,10 @@
 const { Builder, By, until } = require('selenium-webdriver');
 require("chromedriver");
 const { assert } = require('chai');
-//const assert = require('node:assert');
+const fs = require('fs'); 
 
-async function testTriangleType(driver,sides,expected) {
+
+async function testTriangleType(driver,sides,expected,i) {
  
 
   try {
@@ -24,6 +25,17 @@ async function testTriangleType(driver,sides,expected) {
     // Click "Identify Triangle Type"
     const button = await driver.findElement({id:'identify-triangle-action'})
     await button.click();
+
+    //Take screenshot
+    let image = await driver.takeScreenshot()
+    fs.writeFileSync('screenshot.png', image, 'base64');
+    const savedImg = fs.readFileSync('screenshot.png', 'base64');
+    const expectedImg = fs.readFileSync('screenshots/screenshot-'+i+'.png', 'base64');
+
+    
+    assert.equal(image,savedImg)
+    
+    console.log('✅ Test Passed: Correct Screenshot');
 
     // Wait for the result text to appear
     const resultElement = await driver.wait(until.elementLocated({id:'triangle-type'}), 3000);
@@ -80,7 +92,7 @@ async function runTest() {
         ];
 
         for(let i=0;i<cases.length;i++){
-            await testTriangleType(driver,cases[i].sides,cases[i].expected);
+            await testTriangleType(driver,cases[i].sides,cases[i].expected,i);
         }
     }catch(e){
         console.log(e)
