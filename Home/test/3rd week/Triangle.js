@@ -33,7 +33,7 @@ async function testTriangleType(driver,sides,expected,i) {
     const expectedImg = fs.readFileSync('screenshots/screenshot-'+i+'.png', 'base64');
 
     
-    assert.equal(image,savedImg)
+    assert.equal(expectedImg,savedImg)
     
     console.log('✅ Test Passed: Correct Screenshot');
 
@@ -81,13 +81,13 @@ async function runTest() {
         driver = await new Builder().forBrowser('chrome').build();
         await driver.get('https://testpages.eviltester.com/styled/apps/triangle/triangle001.html')  
         const cases = [
-            
+            { sides: [3, 3, 3], expected: ['Equilateral',true] },
             { sides: [1, 2, 3], expected: ['Error: Not a Triangle',false] },
             { sides: [4, 'e', 6], expected: ['Error: Side 2 is not a Number',false] },
             { sides: ['%', 3, 4], expected: ['Error: Side 1 is not a Number',false] },
-            { sides: [3, 3, 3], expected: ['Equilateral',true] },
-            { sides: [5, 5, 8], expected: ['Isosceles',true] },
-            { sides: [5, 4, 3], expected: ['Scalene',true] }
+            
+            { sides: [6, 6, 8], expected: ['Isosceles',true] },
+            { sides: [7, 8, 3], expected: ['Scalene',true] }
             
         ];
 
