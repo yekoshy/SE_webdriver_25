@@ -53,7 +53,7 @@ async function runTest() {
       await drawTriangle(driver,cases[i].sides);
       image = await browsingContext.captureElementScreenshot(elementId)
       fs.writeFileSync('eleScreenshots/screenshot-'+i+'.png', image, 'base64');
-      console.log('✅ Screenshot saved as screenshot.png');
+      console.log('✅ Screenshot saved as screenshot-'+i+'.png');
 
     }
     
