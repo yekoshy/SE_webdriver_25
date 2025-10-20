@@ -33,6 +33,9 @@ class Calculator {
         let result = await this.driver.findElement(By.id('answer')).getText();
         return result;
     }
+    async sleep(n){
+        await this.driver.sleep(n);
+    }
   
 }
 
@@ -72,6 +75,7 @@ async function test() {
         let result = await obj.getOutput(data[i].op);
         assert.equal(data[i].expected, result)
         console.log('✅ Test Passed: '+ data[i].type +' for '+ data[i].in1 +' & '+ data[i].in2);
+        await obj.sleep(200)
     }
   }catch(e){
     
