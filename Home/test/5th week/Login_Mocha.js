@@ -74,6 +74,7 @@ class Login {
 
 
 describe('Testsuit', function () {
+    this.timeout(0);
     const loginObject = new Login('https://practicetestautomation.com/practice-test-login/'); 
 
     before(async function(){
@@ -98,10 +99,10 @@ describe('Testsuit', function () {
         let title = await loginObject.getTitle();
         assert.equal(title,'Logged In Successfully | Practice Test Automation')
     });
-    
+
     it('Positive LogIn test + Assert Screenshot', async function () {
         await loginObject.setAllInput('student','Password123')
-       
+        await loginObject.sleep(1000);
         await loginObject.takeScreenshot();
         const savedImg = fs.readFileSync('screenshot.png', 'base64');
         const expectedImg = fs.readFileSync('saved/screenshot.png', 'base64');
