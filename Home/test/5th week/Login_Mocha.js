@@ -74,6 +74,7 @@ class Login {
 
 
 describe('Testsuit', function () {
+    //remove --no-timeouts
     this.timeout(0);
     const loginObject = new Login('https://practicetestautomation.com/practice-test-login/'); 
 
