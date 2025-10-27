@@ -45,7 +45,7 @@ class RadioBtn{
 
 
 
-describe('Testsuit', function () {
+describe('Testsuit for Radiobutton Page', function () {
     //remove --no-timeouts
     this.timeout(0);
     const Objct = new RadioBtn('https://yekoshy.github.io/RadioBtn-n-Checkbox/'); 
@@ -74,6 +74,29 @@ describe('Testsuit', function () {
         assert.isTrue(flag);
         let msg = await Objct.getOutput('single-radio-output');
         assert.include(msg,expectedMsg);
+
+    }); 
+    
+
+    forEach([['gender-male','age-0-5','Male','0 - 5'],
+             ['gender-male','age-5-15','Male','5 - 15'],
+             ['gender-male','age-15-50','Male','15 - 50'],
+             ['gender-female','age-0-5','Female','0 - 5'],
+             ['gender-female','age-5-15','Female','5 - 15'],
+             ['gender-female','age-15-50','Female','15 - 50']
+        
+    ]).it('Asserting %s & %s is selected & message found', async function (gId,ageId,gMsg,ageMsg) {
+        await Objct.click(gId)
+        await Objct.click(ageId)
+        await Objct.sleep(100);
+        let flag = await Objct.isSelected(gId);
+        assert.isTrue(flag);
+        flag = await Objct.isSelected(ageId);
+        assert.isTrue(flag);
+        let msg = await Objct.getOutput('group-gender-output');
+        assert.equal(msg,gMsg);
+        msg = await Objct.getOutput('group-age-output');
+        assert.equal(msg,ageMsg);
 
     }); 
     })
