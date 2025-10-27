@@ -23,6 +23,10 @@ class RadioBtn{
         await this.driver.findElement(By.id(id)).click()
     }
 
+    async isSelected(id){
+        return await this.driver.findElement(By.id(id)).isSelected()
+    }
+
     
     async sleep(n){
         await this.driver.sleep(n);
@@ -63,9 +67,11 @@ describe('Testsuit', function () {
     })
     
     forEach([['male-single','Male'],['female-single','Female']
-    ]).it('Asserting %s is %s', async function (id,expectedMsg) {
+    ]).it('Asserting %s is selected & message found', async function (id,expectedMsg) {
         await Objct.click(id)
         await Objct.sleep(100);
+        let flag = await Objct.isSelected(id);
+        assert.isTrue(flag);
         let msg = await Objct.getOutput('single-radio-output');
         assert.include(msg,expectedMsg);
 
