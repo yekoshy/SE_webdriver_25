@@ -12,6 +12,8 @@
   "dependencies": {
     "assert": "^2.1.0",
     "chromedriver": "^140.0.2",
+    "mocha": "^11.7.4",
+    "mocha-each": "^2.0.1",
     "selenium-webdriver": "^4.35.0"
   }
 }

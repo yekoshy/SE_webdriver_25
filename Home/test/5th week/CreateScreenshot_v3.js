@@ -17,7 +17,6 @@ async function runTest(url) {
     const browsingContext = await BrowsingContext(driver, {browsingContextId: id,})
 
     await driver.get(url);
-    let elementId = await driver.findElement(By.css(eleID)).getId();
     let image = await browsingContext.captureScreenshot()
     fs.writeFileSync('saved/screenshot.png', image, 'base64');
     console.log('✅ Screenshot saved as screenshot.png');
