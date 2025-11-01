@@ -1,4 +1,4 @@
-//npx mocha '.\.js' --no-timeouts
+//npx mocha .\SimpleNoteTaker_mocha.js --reporter mocha-simple-html-reporter --reporter-options output=report.html
 const {Builder, By, Key, until} = require('selenium-webdriver');
 require("chromedriver");
 const { assert } = require('chai');

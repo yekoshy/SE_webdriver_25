@@ -24,6 +24,7 @@
     "firefox": "^0.0.1",
     "mocha": "^11.7.4",
     "mocha-each": "^2.0.1",
+    "mocha-simple-html-reporter": "^2.0.0",
     "selenium-webdriver": "^4.35.0"
   }
 }
