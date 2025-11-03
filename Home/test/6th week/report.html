@@ -556,10 +556,10 @@ body {
                     <li class="passes">passes: <em>11</em></li>
                     <li class="pending">pending: <em>0</em></li>
                     <li class="failures">failures: <em>0</em></li>
-                    <li class="duration">duration: <em>12.1s</em></li>
+                    <li class="duration">duration: <em>15.4s</em></li>
                 </ul>
             </div>
-            <ul id="report"><li class="suite"><h1>Testsuit</h1><ul><li class="test pass slow"><h2>Testing Empty Title<span class="duration">457ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Empty Note<span class="duration">282ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Adding Note with title test1<span class="duration">1073ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Adding Note with title test2<span class="duration">1051ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Adding Note with title test3<span class="duration">1051ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Adding &#x26; Editing<span class="duration">2537ms</span></h2><pre><code>async function(){
+            <ul id="report"><li class="suite"><h1>Testsuit</h1><ul><li class="test pass slow"><h2>Testing Empty Title<span class="duration">565ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Empty Note<span class="duration">405ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Adding Note with title test1<span class="duration">1353ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Adding Note with title test2<span class="duration">1313ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Adding Note with title test3<span class="duration">1319ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Adding &#x26; Editing<span class="duration">3119ms</span></h2><pre><code>async function(){
         let newTitle = title+&#x27; new&#x27;;
         let newNote = note +&#x27; new&#x27;;
         
@@ -576,13 +576,13 @@ body {
         let titles = await objct.getNoteTitles();
         assert.include(titles,newTitle);
         
-    }</code></pre></li><li class="test pass slow"><h2>Asserting Load &#x26; Show messages<span class="duration">238ms</span></h2><pre><code>async function(){
+    }</code></pre></li><li class="test pass slow"><h2>Asserting Load &#x26; Show messages<span class="duration">335ms</span></h2><pre><code>async function(){
         //Load &#x26; Show 
         txt = await objct.load();
         assert.equal(txt,&#x22;Loaded Available Notes&#x22;)
         txt = await objct.show();
         assert.equal(txt,&#x22;Notes Shown&#x22;)
-    }</code></pre></li><li class="test pass slow"><h2>Testing Adding &#x26; Deleting<span class="duration">1257ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Adding &#x26; Deleting<span class="duration">1399ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Clear All and No Notes Deleted<span class="duration">599ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Clear All and Deleted All Notes<span class="duration">471ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li></ul></li></ul>
+    }</code></pre></li><li class="test pass slow"><h2>Testing Adding &#x26; Deleting<span class="duration">1598ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Adding &#x26; Deleting<span class="duration">1604ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Clear All and No Notes Deleted<span class="duration">609ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li><li class="test pass slow"><h2>Testing Clear All and Deleted All Notes<span class="duration">601ms</span></h2><pre><code>return test.apply(this, param);</code></pre></li></ul></li></ul>
         </div>
         <script>
         function hideSuitesWithout(className) {
