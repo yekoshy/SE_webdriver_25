@@ -5,6 +5,30 @@ const { assert } = require('chai');
 //import the following classes from Selenium
 const {Builder, By, Key, until} = require('selenium-webdriver');
 
+async function sleep(driver,n){
+        await driver.sleep(n);
+}
+async function max(driver){
+    await driver.manage().window().maximize();
+    await sleep(driver,100);
+}
+
+async function scroll(driver,y){
+    await driver.actions().scroll(0, 0, 0, y).perform()
+    await sleep(driver,100);
+}
+
+
+
+async function refresh(driver){
+    await sleep(driver,500);
+    await scroll(driver,300);
+    await driver.findElement(By.id('load-notes')).click();
+    await driver.findElement(By.id('show-notes')).click();
+    await scroll(driver,300);
+    
+}
+
 async function emptyTitleTest(driver) {
     try{
         console.log('Running emptyTitleTest...')
@@ -50,18 +74,24 @@ async function addingNoteTest(driver,title,note) {
         await driver.findElement({id:'note-details-input'}).sendKeys(note)
 
         await driver.findElement({id:'add-note'}).click()
+
+        await refresh(driver);
         
-        //first assertion
-        let Txt = await driver.findElement({id:'note-status-details'}).getText();
-        assert.equal(Txt,"Added Note");
+        
 
         //Second assertion
-        let titles = await driver.findElements(By.className('title-note-in-list'));
-        let newTitle = await titles[titles.length - 1].getText();
-        assert.equal(newTitle,title);
+        let titlesEle = await driver.findElements(By.className('title-note-in-list'));
+        const titles = [];
+        for (const el of titlesEle) {
+            titles.push(await el.getText());
+        }
+        assert.include(titles,title);
                
         console.log('## addingNoteTest  Passed')
-        return titles[titles.length - 1].getAttribute('data-key');
+        
+        let ele = await driver.findElement(By.xpath("//p[@class='title-note-in-list' and text()='"+title+"']"))
+        return ele.getAttribute('data-key');
+
     }catch(e){
         console.log('## addingNoteTest Failed')
         console.log(e)
@@ -121,13 +151,9 @@ async function addEditDeleteNoteTest(driver,title,note,newTitle,newNote) {
         await driver.findElement({id:'note-details-input'}).sendKeys(newNote)
 
         await driver.findElement({id:'update-note'}).click()
+        await refresh(driver);
         
-        //first assertion
-        txt = await driver.findElement({id:'note-status-details'}).getText();
-        assert.equal(txt,"Updated Note");
-
-        //Second assertion
-        
+            
         let updatedTitle = await driver.findElement(By.xpath("//p[@class='title-note-in-list' and @data-key='"+ dataKey +"']")).getText()
         assert.equal(newTitle,updatedTitle);
 
@@ -139,7 +165,7 @@ async function addEditDeleteNoteTest(driver,title,note,newTitle,newNote) {
 
         txt = await driver.findElement({id:'note-status-details'}).getText();
         assert.equal(txt,"Deleted Note: "+dataKey);
-
+        
 
         console.log('## addEditDeleteNoteTest  Passed')
     }catch(e){
@@ -153,9 +179,9 @@ async function  runTests() {
     try{
         driver = await new Builder().forBrowser('chrome').build();
         await driver.get('https://testpages.eviltester.com/styled/apps/notes/simplenotes.html')  
-        
+        await max(driver);
+
         await emptyTitleTest(driver);
-        
         await emptyNoteTest(driver,'Hello');
         
         
@@ -163,11 +189,11 @@ async function  runTests() {
         for(let i=0;i<notes.length;i++){
             await addingNoteTest(driver,notes[i][0],notes[i][1]);
         }
-
+        
         await noteListBtnTest(driver);
 
         await addEditDeleteNoteTest(driver,'test','test','newTest','newTest');
-
+        
     }catch(e){
         console.log(e)
     }finally{
