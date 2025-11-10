@@ -19,12 +19,12 @@
   },
   "dependencies": {
     "assert": "^2.1.0",
-    "chromedriver": "^140.0.2",
+    "chromedriver": "^142.0.1",
     "csv-parser": "^3.2.0",
     "firefox": "^0.0.1",
     "mocha": "^11.7.4",
     "mocha-each": "^2.0.1",
     "mocha-simple-html-reporter": "^2.0.0",
-    "selenium-webdriver": "^4.35.0"
+    "selenium-webdriver": "^4.38.0"
   }
 }
