@@ -9,7 +9,9 @@ describe('Mouse Testsuite', function () {
     driver = new Builder().forBrowser('chrome').build();
   });
 
-  after(async () => await driver.quit());
+  //after(async () => await driver.quit());
+after ();
+
 
   it('Double-click on an element', async function () {
     await driver.get('https://www.selenium.dev/selenium/web/mouse_interaction.html');
@@ -22,7 +24,7 @@ describe('Mouse Testsuite', function () {
     assert.deepStrictEqual(status, `double-clicked`)
   });
 
-    it('Mouse move into an element', async function () {
+    it.only('Mouse move into an element', async function () {
     await driver.get('https://www.selenium.dev/selenium/web/mouse_interaction.html');
     const hoverable = driver.findElement(By.id("hover"));
     const actions = driver.actions({async: true});
