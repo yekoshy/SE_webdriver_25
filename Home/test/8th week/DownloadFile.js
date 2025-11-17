@@ -24,6 +24,7 @@ class Download {
             "download.prompt_for_download": false,
             "safebrowsing.enabled": true
         });
+        
         this.driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
         await this.driver.get(this.url);
         
@@ -41,20 +42,22 @@ class Download {
     async waitforFile(filename){
         let filePath = path.resolve('./'+downloadDir+'/'+filename);
         let flag = fs.existsSync(filePath)
-        if(!flag){
-            await this.sleep(1000)
-            this.waitforFile(filename);
-            console.log('Waiting for a minute')
-        }else{
+        await this.sleep(1000)
+        console.log('Waiting for a minute')
         return flag;
-        }
+        
     }
 
     async isExisted(filename){
-        let filePath = path.resolve('./'+downloadDir+'/'+filename);
-        //await this.waitforFile(filename);
-        await this.driver.wait(async ()=>{ let flag = await this.waitforFile(filename); return flag;},5000)
-        return(fs.existsSync(filePath));
+        try{
+            let filePath = path.resolve('./'+downloadDir+'/'+filename);
+            //await this.waitforFile(filename);
+            await this.driver.wait(async ()=>{ let flag = await this.waitforFile(filename); return flag;},5000)
+            return(fs.existsSync(filePath));
+        }catch(e){
+            console.log(e)
+
+        }
     }
 
     async setArray(xpath){
@@ -130,8 +133,8 @@ describe('Setting Data', function () {
     })
     
     it("Download all files", async function () {
-        if(objct.array.length >10){
-            for(let i=0; i<10;i++){
+        if(objct.array.length >30){
+            for(let i=0; i<30;i++){
                 let filename = objct.array[i];
                 await objct.click(filename);
                 let flag = await objct.isExisted(filename);
