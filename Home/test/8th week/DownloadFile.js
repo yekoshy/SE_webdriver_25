@@ -45,12 +45,15 @@ class Download {
             await this.sleep(1000)
             this.waitforFile(filename);
             console.log('Waiting for a minute')
-        }else{return;}
+        }else{
+        return flag;
+        }
     }
 
     async isExisted(filename){
         let filePath = path.resolve('./'+downloadDir+'/'+filename);
-        await this.waitforFile(filename);
+        //await this.waitforFile(filename);
+        await this.driver.wait(async ()=>{ let flag = await this.waitforFile(filename); return flag;},5000)
         return(fs.existsSync(filePath));
     }
 
@@ -131,13 +134,15 @@ describe('Setting Data', function () {
             for(let i=0; i<10;i++){
                 let filename = objct.array[i];
                 await objct.click(filename);
-                assert.isTrue(await objct.isExisted(filename), filename + " was not downloaded");
+                let flag = await objct.isExisted(filename);
+                assert.isTrue(flag, filename + " was not downloaded");
                 await objct.sleep(1000);
             }
         }else{
         for (const filename  of objct.array) {
             await objct.click(filename);
-            assert.isTrue(await objct.isExisted(filename), filename + " was not downloaded");
+            let flag = await objct.isExisted(filename)
+            assert.isTrue(flag, filename + " was not downloaded");
             await objct.sleep(1000);
         }}
     });
