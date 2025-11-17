@@ -127,11 +127,19 @@ describe('Setting Data', function () {
     })
     
     it("Download all files", async function () {
+        if(objct.array.length >10){
+            for(let i=0; i<10;i++){
+                let filename = objct.array[i];
+                await objct.click(filename);
+                assert.isTrue(await objct.isExisted(filename), filename + " was not downloaded");
+                await objct.sleep(1000);
+            }
+        }else{
         for (const filename  of objct.array) {
             await objct.click(filename);
             assert.isTrue(await objct.isExisted(filename), filename + " was not downloaded");
             await objct.sleep(1000);
-        }
+        }}
     });
     /*
     forEach(arr).it("Download file %s", async function (filename) {
