@@ -1,0 +1,12 @@
+{
+  "spec": [
+
+    ".\\Page_Object_Model(POM)\\search_pom.test.js",
+    ".\\Data-Driven_Pattern\\data_driven.test.js",
+    ".\\Factory_Pattern\\factory_pattern.test.js",
+    ".\\Strategy_Pattern\\strategy.test.js",
+    ".\\Strategy_Pattern_DD\\strategy.test.js",
+    ".\\Strategy_Pattern_Factory\\strategy.test.js"
+    
+  ]
+}

@@ -7,7 +7,7 @@ const duckObj = new DuckSearch();
 const bingObj = new Bing();
 const ecoObj = new Ecosia();
 
-forEach([duckObj,bingObj,ecoObj]).describe("Strategies Example", function(objct) {
+[duckObj,bingObj,ecoObj].forEach(objct => { describe("Strategies Example with Data in "+objct.url, function() {
   this.timeout(0);  
   
 
@@ -43,3 +43,5 @@ forEach([duckObj,bingObj,ecoObj]).describe("Strategies Example", function(objct)
   });
 });
 })
+})
+

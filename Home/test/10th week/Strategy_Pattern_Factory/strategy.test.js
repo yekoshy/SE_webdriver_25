@@ -7,7 +7,7 @@ const duckObj = new DuckSearch();
 const bingObj = new Bing();
 const ecoObj = new Ecosia();
 
-forEach([duckObj,bingObj,ecoObj]).describe("Strategies Example", function(objct) {
+[duckObj,bingObj,ecoObj].forEach(objct => { describe("Strategies Example with Factory in "+objct.url, function() {
   this.timeout(0);  
   
 
@@ -26,12 +26,13 @@ forEach([duckObj,bingObj,ecoObj]).describe("Strategies Example", function(objct)
   afterEach(async function(){
     await objct.close()
   })
-
-  forEach(['selenuim','mocha','javascript','other']).it("Search using Factory-generated term", async function(type){
-    
+  let data = [{type:'selenuim'},{type:'mocha'},{type:'javascript'},{type:'other'}]
+  
+  data.forEach(testData => {
+    it(`Search for: ${testData.type}`, async function() {  
 
     try {
-      let keyword = SearchTermFactory.getSearchTerm(type);
+      let keyword = SearchTermFactory.getSearchTerm(testData.type);
       await objct.search(keyword);
       let title = await objct.getTitle();
       assert.include(title,keyword)
@@ -41,3 +42,4 @@ forEach([duckObj,bingObj,ecoObj]).describe("Strategies Example", function(objct)
     }
   });
 });
+})})
