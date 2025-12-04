@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const SearchPage = require("./SearchPage");
+const SearchPage = require("../SearchPage");
 const data = require("./search.json");
 
 describe("Data Driven Example", function() {

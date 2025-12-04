@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const SearchPage = require("./SearchPage");
+const SearchPage = require("../SearchPage");
 
 describe("POM Example", function() {
   this.timeout(0);  

@@ -1,4 +1,4 @@
-const SearchPage = require("./SearchPage");
+const SearchPage = require("../SearchPage");
 
 class DuckSearch extends SearchPage {
 
