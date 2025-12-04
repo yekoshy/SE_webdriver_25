@@ -4,7 +4,7 @@ const data = require("./search.json");
 
 describe("Data Driven Example", function() {
   this.timeout(0);  
-  const objct = new SearchPage();
+  const objct = new SearchPage('https://duckduckgo.com/');
 
   before(async function(){
     //await objct.open()

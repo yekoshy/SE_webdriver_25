@@ -5,7 +5,7 @@ const { assert } = require('chai');
 
 describe("Factory Pattern Example (DuckDuckGo Search)", function () {
     this.timeout(0);  
-    const objct = new SearchPage();
+    const objct = new SearchPage('https://duckduckgo.com/');
 
     before(async function(){
         //await objct.open()
