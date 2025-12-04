@@ -1,4 +1,4 @@
-const SearchTermFactory = require("./SearchTermFactory");
+const SearchTermFactory = require("../SearchTermFactory");
 const SearchPage = require("../SearchPage");
 const forEach = require("mocha-each");
 const { assert } = require('chai');

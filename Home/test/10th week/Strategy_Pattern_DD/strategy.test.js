@@ -1,10 +1,15 @@
-const { assert } = require('chai');
-const SearchPage = require("../SearchPage");
+const { DuckSearch, Bing, Ecosia } = require("./Strategies.js");
 const data = require("../search.json");
+const forEach = require("mocha-each");
+const { assert } = require('chai');
 
-describe("Data Driven Example", function() {
+const duckObj = new DuckSearch();
+const bingObj = new Bing();
+const ecoObj = new Ecosia();
+
+forEach([duckObj,bingObj,ecoObj]).describe("Strategies Example", function(objct) {
   this.timeout(0);  
-  const objct = new SearchPage('https://duckduckgo.com/');
+  
 
   before(async function(){
     //await objct.open()
@@ -31,12 +36,10 @@ describe("Data Driven Example", function() {
       await objct.search(keyword);
       let title = await objct.getTitle();
       assert.include(title,keyword)
-
     } catch(e) {
       console.log(e)
       
     }
   });
 });
-
 })
