@@ -1,8 +1,9 @@
 const Upload = require('./UploadFile');
 require("chromedriver");
 const chrome = require('selenium-webdriver/chrome');
-const firefox = require('selenium-webdriver/firefox');
+//const firefox = require('selenium-webdriver/firefox');
 const edge = require('selenium-webdriver/edge');
+const safari = require('selenium-webdriver/safari');
 const {Builder, Browser} = require('selenium-webdriver');
 
 
@@ -29,10 +30,10 @@ class firefoxUpload extends Upload {
     }
 
     async open() {
-        let options = new firefox.Options();
-        options.addArguments("--force-device-scale-factor=0.75");
-        //options.setPreference("layout.css.devPixelsPerPx", "0.75");
-        this.driver = new Builder().forBrowser(Browser.FIREFOX).setFirefoxOptions(options).build();
+        //let options = new firefox.Options();
+        //options.setPreference('layout.css.devPixelsPerPx', 1.33333333);
+        //this.driver = await new Builder().forBrowser('firefox').setFirefoxOptions(options).build();
+        this.driver = await new Builder().forBrowser('firefox').build();
         await this.driver.get(this.url);
     }
 }
@@ -52,4 +53,20 @@ class edgeUpload extends Upload {
     }
 }
 
-module.exports = {chromeUpload, firefoxUpload, edgeUpload};
+class safariUpload extends Upload {
+    constructor() {
+        super();
+        this.browser = "safari";
+    }
+
+    async open() {
+        //const options = new safari.Options();
+        //options.addArguments("--force-device-scale-factor=0.75");
+        //this.driver = new Builder().forBrowser(Browser.SAFARI).setSafariOptions(options).build();
+        this.driver = new Builder().forBrowser(Browser.SAFARI).build();
+        await this.driver.get(this.url);
+        const scaleFactor = 0.75;
+        await driver.executeScript(`document.body.style.zoom = ${scaleFactor}`);
+    }
+}
+module.exports = {chromeUpload, firefoxUpload, edgeUpload, safariUpload};

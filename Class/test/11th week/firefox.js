@@ -6,11 +6,8 @@ describe('Open Firefox', function () {
   let driver;
     this.timeout(0);
   before(async function () {
-    let options = new firefox.Options();
-    driver = new Builder()
-      .forBrowser(Browser.FIREFOX)
-      .setFirefoxOptions(options)
-      .build();
+    
+    driver = await new Builder().forBrowser('firefox').build();
   });
 
   after(async () => await driver.quit());
