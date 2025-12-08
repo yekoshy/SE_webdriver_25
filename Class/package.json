@@ -12,6 +12,7 @@
   "dependencies": {
     "assert": "^2.1.0",
     "chromedriver": "^142.0.1",
+    "edge": "^7.10.1",
     "firefox": "^0.0.1",
     "mocha": "^11.7.4",
     "mocha-each": "^2.0.1",

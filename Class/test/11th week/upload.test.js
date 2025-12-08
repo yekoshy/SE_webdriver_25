@@ -3,12 +3,13 @@ const forEach = require('mocha-each');
 const path = require("path");
 const Upload = require("./UploadFile");
 const data = require("./data.json");
-const { chromeUpload, firefoxUpload }= require('./strategies')
+const { chromeUpload, firefoxUpload, edgeUpload }= require('./strategies')
 
 const chromeObj = new chromeUpload();
 const firefoxObj = new firefoxUpload();
+const edgeObj = new edgeUpload();
 
-[chromeObj,firefoxObj].forEach(objct => { describe('Testing in '+ objct.browser, function () {
+[chromeObj,edgeObj].forEach(objct => { describe('Testing in '+ objct.browser, function () {
     //remove --no-timeouts
     this.timeout(0);
     
