@@ -6,12 +6,12 @@ const data = require("./data.json");
 const { chromeUpload, firefoxUpload, edgeUpload, safariUpload }= require('./strategies')
 
 const chromeObj = new chromeUpload();
-//Not working for windows
 const firefoxObj = new firefoxUpload();
 const edgeObj = new edgeUpload();
+//Not working for windows
 const safariObj = new safariUpload();
 
-[firefoxObj].forEach(objct => { describe('Testing in '+ objct.browser, function () {
+[firefoxObj,chromeObj,edgeObj].forEach(objct => { describe('Testing in '+ objct.browser, function () {
     //remove --no-timeouts
     this.timeout(0);
     

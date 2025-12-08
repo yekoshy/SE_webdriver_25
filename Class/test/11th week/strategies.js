@@ -5,6 +5,7 @@ const firefox = require('selenium-webdriver/firefox');
 const edge = require('selenium-webdriver/edge');
 const safari = require('selenium-webdriver/safari');
 const {Builder, Browser} = require('selenium-webdriver');
+const { platform } = require('node:process');
 
 
 
@@ -30,12 +31,16 @@ class firefoxUpload extends Upload {
     }
 
     async open() {
+        console.log(`This platform is ${platform}`)
         let options = new firefox.Options();
         options.setPreference('layout.css.devPixelsPerPx', '0.7');
-        //this.driver = await new Builder().forBrowser('firefox').setFirefoxOptions(options).build();
-        const service = new firefox.ServiceBuilder('C:\\Tools\\geckodriver\\geckodriver.exe');
-        this.driver = await new Builder().forBrowser('firefox').setFirefoxService(service).setFirefoxOptions(options).build();
         
+        if(platform == 'win32'){
+            const service = new firefox.ServiceBuilder('..\\..\\geckodriver.exe');
+            this.driver = await new Builder().forBrowser('firefox').setFirefoxService(service).setFirefoxOptions(options).build();
+        }else{
+            this.driver = await new Builder().forBrowser('firefox').setFirefoxOptions(options).build();
+        }
         await this.driver.get(this.url);
         await this.driver.executeScript(`
             document.body.style.transform = "scale(0.75)";
