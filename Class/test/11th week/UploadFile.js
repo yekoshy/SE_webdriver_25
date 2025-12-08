@@ -29,7 +29,7 @@ class Upload {
     async submit(){
         await this.driver.findElement(By.css('input[type="submit"]')).submit()
         await this.sleep(100);
-        await this.driver.wait(until.titleContains("Upload Results"),1000);
+        await this.driver.wait(until.titleContains("Upload Results"),2000);
     }
 
     async getTxt(id){
