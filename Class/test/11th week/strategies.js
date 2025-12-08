@@ -1,7 +1,7 @@
 const Upload = require('./UploadFile');
 require("chromedriver");
 const chrome = require('selenium-webdriver/chrome');
-//const firefox = require('selenium-webdriver/firefox');
+const firefox = require('selenium-webdriver/firefox');
 const edge = require('selenium-webdriver/edge');
 const safari = require('selenium-webdriver/safari');
 const {Builder, Browser} = require('selenium-webdriver');
@@ -30,11 +30,18 @@ class firefoxUpload extends Upload {
     }
 
     async open() {
-        //let options = new firefox.Options();
-        //options.setPreference('layout.css.devPixelsPerPx', 1.33333333);
+        let options = new firefox.Options();
+        options.setPreference('layout.css.devPixelsPerPx', '0.7');
         //this.driver = await new Builder().forBrowser('firefox').setFirefoxOptions(options).build();
-        this.driver = await new Builder().forBrowser('firefox').build();
+        const service = new firefox.ServiceBuilder('C:\\Tools\\geckodriver\\geckodriver.exe');
+        this.driver = await new Builder().forBrowser('firefox').setFirefoxService(service).setFirefoxOptions(options).build();
+        
         await this.driver.get(this.url);
+        await this.driver.executeScript(`
+            document.body.style.transform = "scale(0.75)";
+            document.body.style.transformOrigin = "0 0";
+            document.documentElement.style.width = (100 / 0.75) + "%";
+        `);
     }
 }
 

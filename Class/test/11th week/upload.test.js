@@ -11,7 +11,7 @@ const firefoxObj = new firefoxUpload();
 const edgeObj = new edgeUpload();
 const safariObj = new safariUpload();
 
-[safariObj].forEach(objct => { describe('Testing in '+ objct.browser, function () {
+[firefoxObj].forEach(objct => { describe('Testing in '+ objct.browser, function () {
     //remove --no-timeouts
     this.timeout(0);
     
@@ -50,7 +50,7 @@ const safariObj = new safariUpload();
 
         let title = await objct.getTitle();
         assert.equal(title,'File Upload - Upload Results | Test Pages')
-
+        await objct.sleep(200);
         let txt = await objct.getTxt('uploadedfiletype');
         assert.equal(txt,type);
 
