@@ -20,5 +20,8 @@
     "mocha-simple-html-reporter": "^2.0.0",
     "safari": "^0.0.1",
     "selenium-webdriver": "^4.39.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0"
   }
 }

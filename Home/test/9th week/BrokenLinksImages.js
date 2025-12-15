@@ -33,8 +33,9 @@ class BrokenImgLnk {
     async fetchData(link) {
         try {
             // 1. Make the request
-            const response = await fetch(link, { method: 'HEAD' });
+            const response = await fetch(link, { method: 'GET' });
             return response.ok;
+            
 
 
         } catch (error) {
@@ -90,8 +91,8 @@ describe('Testsuit', function () {
     //remove --no-timeouts
     this.timeout(0);
     
-    const objct = new BrokenImgLnk('https://the-internet.herokuapp.com/broken_images'); 
-    
+    //const objct = new BrokenImgLnk('https://the-internet.herokuapp.com/broken_images'); 
+    const objct = new BrokenImgLnk('https://moatazeldebsy.github.io/test-automation-practices/?#/broken-images')
 
     before(async function(){
         await objct.open()
