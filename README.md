@@ -279,4 +279,4 @@ For in-depth information about each folder:
 - **Home folder details**: See `Home/README.md`
 
 ---
-
+![Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fyekoshy%2FSE_webdriver_25)
