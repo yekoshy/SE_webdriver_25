@@ -1,0 +1,61 @@
+const { Builder, By } = require("selenium-webdriver");
+require("chromedriver");
+const assert = require('node:assert');
+
+async function loginTest() {
+    const URL = "https://practicetestautomation.com/practice-test-login/";
+    const VALID_USERNAME = "student";
+    const VALID_PASSWORD = "Password123";
+
+    let driver = await new Builder().forBrowser("chrome").build();
+
+    try {
+        async function performLogin(username, password) {
+            await driver.get(URL);
+            const usernameField = await driver.findElement(By.id("username"));
+            const passwordField = await driver.findElement(By.id("password"));
+            const submitBtn = await driver.findElement(By.id("submit"));
+
+            await usernameField.clear();
+            await usernameField.sendKeys(username);
+
+            await passwordField.clear();
+            await passwordField.sendKeys(password);
+
+            await submitBtn.click();
+            await driver.sleep(1000); 
+        }
+
+        await performLogin(VALID_USERNAME, VALID_PASSWORD);
+        let pageSource = await driver.getPageSource();
+        assert.ok(pageSource.includes("Logged In Successfully"));
+        console.log("TC1: Valid Login passed");
+
+        await performLogin("hend", "Hend123");
+        let errorText = await driver.findElement(By.id("error")).getText();
+        console.log("TC2: Invalid Login");
+        assert.strictEqual(errorText, "Your username is invalid!");
+
+        await performLogin("", VALID_PASSWORD);
+        errorText = await driver.findElement(By.id("error")).getText();
+        assert.strictEqual(errorText, "Your username is invalid!");
+        console.log("TC3: Blank Username");
+
+        await performLogin(VALID_USERNAME, "");
+        errorText = await driver.findElement(By.id("error")).getText();
+        assert.strictEqual(errorText, "Your password is invalid!");
+        console.log("TC4: Blank Password");
+
+        await performLogin("", "");
+        errorText = await driver.findElement(By.id("error")).getText();
+        assert.strictEqual(errorText, "Your username is invalid!");
+        console.log("TC5: Both Fields Blank");
+
+    } catch (e) {
+        console.log("Test Failed:", e);
+    } finally {
+        await driver.quit();
+    }
+}
+
+loginTest();
